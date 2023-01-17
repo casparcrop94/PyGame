@@ -23,7 +23,9 @@ while True:
             pygame.quit()
             exit()
         if event.type == pygame.MOUSEMOTION:
-            print(event.pos)
+            if player_rect.collidepoint(event.pos):
+                print('Collission!')
+
         if event.type == pygame.MOUSEBUTTONUP:
             print('Mouse Up!')
 
