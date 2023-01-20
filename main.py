@@ -22,12 +22,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        if event.type == pygame.MOUSEMOTION:
-            if player_rect.collidepoint(event.pos):
-                print('Collission!')
+        # if event.type == pygame.MOUSEMOTION:
+        #     if player_rect.collidepoint(event.pos):
+        #         print('Collission!')
 
-        if event.type == pygame.MOUSEBUTTONUP:
-            print('Mouse Up!')
+        # if event.type == pygame.MOUSEBUTTONUP:
+        #     print('Mouse Up!')
 
     screen.blit(sky_surface,(0,0))
     screen.blit(ground_surface, (0,300))
@@ -45,10 +45,10 @@ while True:
     # else:
     #     print('Free to run')
 
-    mouse_pos = pygame.mouse.get_pos()
-    if player_rect.collidepoint(mouse_pos):
-        print('Collision!')
-        print(pygame.mouse.get_pressed())
+    # mouse_pos = pygame.mouse.get_pos()
+    # if player_rect.collidepoint(mouse_pos):
+    #     print('Collision!')
+    #     print(pygame.mouse.get_pressed())
 
     #Draw all elements and update everything
     pygame.display.update()
