@@ -41,6 +41,36 @@ class Player(pygame.sprite.Sprite):
         self.apply_gravity()
         self.animation_state()
 
+class Obstacle(pygame.sprite.Sprite):
+    def __init__(self,type):
+        super().__init__()
+
+        self.obstacle_speed = 4
+        self.frame_index = 0
+        self.frames = []
+
+        if type == 'snail':
+            snail_frame_1 = pygame.image.load('graphics/snail/snail1.png').convert_alpha()
+            snail_frame_2 = pygame.image.load('graphics/snail/snail2.png').convert_alpha()
+            self.frames = [snail_frame_1,snail_frame_2]
+            y_pos = 300
+
+        if type == 'fly':
+            fly_frame_1 = pygame.image.load('graphics/Fly/Fly1.png').convert_alpha()
+            fly_frame_2 = pygame.image.load('graphics/Fly/Fly2.png').convert_alpha()
+            self.frames = [fly_frame_1,fly_frame_2]
+            y_pos = 210
+
+        self.image = self.frames[self.frame_index]
+        self.rect = self.image.get_rect(midbottom = (randint(900,1100),y_pos))
+
+    def animation_state(self):
+        self.rect.x -= self.obstacle_speed
+
+
+
+
+
 
 def display_score():
     current_time = round(
