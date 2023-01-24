@@ -16,11 +16,15 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(midbottom = (100, 300))
         self.gravity = 0
 
+        self.jump_sound = pygame.mixer.Sound('audio/jump.mp3')
+        self.jump_sound.set_volume(0.25)
+
     def player_input(self):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
             self.gravity = -25
+            self.jump_sound.play()
 
     def apply_gravity(self):
         self.gravity += 1
@@ -102,6 +106,11 @@ test_font = pygame.font.Font('font/Pixeltype.ttf', 50)
 sky_surf = pygame.image.load('graphics/Sky.png').convert()
 ground_surf = pygame.image.load('graphics/Ground.png').convert()
 
+# BGM
+bgm_sound = pygame.mixer.Sound('audio/music.wav')
+bgm_sound.set_volume(0.5)
+bgm_sound.play(loops= -1)
+
 # Declare variables for later use
 game_is_active = False
 start_time = 0
@@ -139,6 +148,7 @@ while True:
                 game_is_active = True
                 obstacle_speed = 5
                 start_time = pygame.time.get_ticks()
+                bgm_sound.play(loops= -1)
                 
     if game_is_active:
         # Active Game Screen
@@ -160,7 +170,7 @@ while True:
         game_is_active = collision_spr()
 
     else:
-
+        bgm_sound.stop()
         # Intro / Game Over Screen
         screen.fill((94,129,162))
         screen.blit(player_stand, player_stand_rect)
